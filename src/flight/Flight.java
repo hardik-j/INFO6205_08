@@ -52,7 +52,19 @@ public class Flight implements Comparable<Flight> {
 	public Integer calculateFitness() {
 		int fitness = 0;
 		//Fitness calculation logic begins
-		
+		 for (int i = 0; i < timeArray.length; i++) {
+	            if (timeArray[i] == 1) {
+	                ++fitness;
+	            }
+		 }
+		 
+		 for (int j = 0; j < priceArray.length; j++) {
+	            if (priceArray[j] == 1) {
+	                ++fitness;
+	            }
+		 }      
+
+
 		
 		//Fitness calculation logic ends
 		this.fitness = fitness;
