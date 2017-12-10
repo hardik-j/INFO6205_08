@@ -33,7 +33,7 @@ public class Flight implements Comparable<Flight> {
 		int size = timeArray.length;
 		for (int i = 0; i < size; i++) {
 			double random = Math.random();
-			timeArray[i] = random <= 0.5 ? 0 : 1;
+			timeArray[i] = random <= 0.03 ? 0 : 1;
 		}
 	}
 
@@ -41,7 +41,7 @@ public class Flight implements Comparable<Flight> {
 		int size = priceArray.length;
 		for (int i = 0; i < size; i++) {
 			double random = Math.random();
-			priceArray[i] = random <= 0.5 ? 1 : 0;
+			priceArray[i] = random <= 0.03 ? 1 : 0;
 		}
 	}
 

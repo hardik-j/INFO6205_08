@@ -42,7 +42,9 @@ public class Population {
 	}
 
 	private void doCull() {
-		flights.remove(flights.size() - 1);
+		Collections.sort(flights);
+		Flight remove = flights.remove(flights.size() - 1);
+		System.out.println("Culling fitness : " + remove.getFitness());
 	}
 
 	private Flight doCrossover(Flight flight1, Flight flight2) {
@@ -65,11 +67,14 @@ public class Population {
 				timeArray[i] = timeArray2[i];
 			}
 		}
+		newFlight.calculateFitness();
+//		System.out.print("New fitness : " + newFlight.getFitness());
 		return newFlight;
 	}
 
 	public void doMutation(Flight flight) {
 		if(Math.random() < 0.08) {
+			System.out.println("Mutating!!");
 			int bit = (int) Math.floor(Math.random() * 10);
 			flight.getPriceArray()[bit] = flight.getPriceArray()[bit] == 0 ? 1 : 1;
 			flight.getTimeArray()[bit] = flight.getTimeArray()[bit] == 0 ? 1 : 1;
@@ -84,6 +89,5 @@ public class Population {
 
 	public void evolve() {
 		doSelectionAndCrossover();
-		
 	}
 }
