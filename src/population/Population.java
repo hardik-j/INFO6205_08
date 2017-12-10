@@ -32,9 +32,10 @@ public class Population {
 		return flight;
 	}
 
-	public void doSelectionAndCrossover() {
+	private void doSelectionAndCrossover() {
 		int cullCount = (int)(Constants.CULL_RATIO * flights.size());
 		for(int i = 1; i <= cullCount; i++) {
+			//Choosing the 2 best species
 			Flight flight1  = getFittest();
 			Flight flight2  = flights.get(1);
 			Flight newFlight = doCrossover(flight1, flight2);
@@ -75,14 +76,13 @@ public class Population {
 		return newFlight;
 	}
 
-	public void doMutation(Flight flight) {
+	private void doMutation(Flight flight) {
 		if(Math.random() < 0.08) {
 			logger.info("Fitness before mutation : " + flight.getFitness());
 			int bit = (int) Math.floor(Math.random() * 10);
 			flight.getPriceArray()[bit] = flight.getPriceArray()[bit] == 0 ? 1 : 1;
 			flight.getTimeArray()[bit] = flight.getTimeArray()[bit] == 0 ? 1 : 1;
-			flight.calculateFitness();
-			logger.info("Fitness after mutation : " + flight.getFitness());
+			logger.info("Fitness after mutation : " + flight.calculateFitness());
 			logger.info("");
 		}
 

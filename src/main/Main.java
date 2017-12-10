@@ -21,15 +21,27 @@ public class Main {
 			pop.evolve();
 			Flight fittest = pop.getFittest();
 			logger.info("Fittest : " + fittest.getFitness());
+			logger.info("Fare : $" + fittest.getPrice());
+			logger.info("Duration : " + fittest.getTime() + " hours");
+			printArray(fittest.getTimeArray());
 			tries++;
 		}
 		Flight fittest = pop.getFittest();
 		logger.info("****************************************************");
-		logger.info("Optimal flight : " + fittest.getFitness());
+		logger.info("Number of generations : " + (tries -1));
+		logger.info("Optimal flight fitness : " + fittest.getFitness());
 		logger.info("Fare : $" + fittest.getPrice());
 		logger.info("Duration : " + fittest.getTime() + " hours");
 		
 		
+	}
+
+	private static void printArray(int[] timeArray) {
+		// TODO Auto-generated method stub
+		String str = "";
+		for(int i = 0; i < timeArray.length ; i++)
+			str = str + timeArray[i];
+		logger.info(str);
 	}
 
 	public static void generatePopulation(Population genPop) {

@@ -35,7 +35,7 @@ public class Flight implements Comparable<Flight> {
 		int size = timeArray.length;
 		for (int i = 0; i < size; i++) {
 			double random = Math.random();
-			timeArray[i] = random <= 0.03 ? 0 : 1;
+			timeArray[i] = (int)Math.round(random);
 		}
 	}
 
@@ -43,30 +43,36 @@ public class Flight implements Comparable<Flight> {
 		int size = priceArray.length;
 		for (int i = 0; i < size; i++) {
 			double random = Math.random();
-			priceArray[i] = random <= 0.03 ? 1 : 0;
+			priceArray[i] = (int)Math.round(random);
 		}
 	}
-	
+
+//	 The price step value gets added to the base price value for every element 0
+//	 in the price array
+//	 Changes to the above values can be made in the constants file
 	public int getPrice() {
 		int price = Constants.BASE_PRICE;
 		for (int i = 0; i < priceArray.length; i++)
-			price = priceArray[i] ==0 ? price + Constants.PRICE_STEP: price;
-		return price;		
+			price = priceArray[i] == 0 ? price + Constants.PRICE_STEP : price;
+		return price;
 	}
-	
+
+//	 The time step value gets added to the base time value for every element 0
+//	 in the time array
+//	 Changes to the above values can be made in the constants file
 	public float getTime() {
 		float time = Constants.BASE_TIME;
 		for (int i = 0; i < timeArray.length; i++)
-			time = timeArray[i] == 0 ? time + Constants.TIME_STEP: time;
-		return time;		
+			time = timeArray[i] == 0 ? time + Constants.TIME_STEP : time;
+		return time;
 	}
 
 	public int compareTo(Flight o) {
 		Integer fit1 = calculateFitness();
 		Integer fit2 = o.calculateFitness();
-		if(fit1 - fit2 > 0)
+		if (fit1 - fit2 > 0)
 			return -1;
-		else if(fit1 - fit2 < 0)
+		else if (fit1 - fit2 < 0)
 			return 1;
 		else
 			return 0;
