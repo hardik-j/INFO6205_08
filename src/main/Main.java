@@ -8,12 +8,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Population genPop = new Population();
+		System.out.println("Generation : 0");
 		generatePopulation(genPop);
+		System.out.print("Fittest : " + genPop.getFittest().getFitness());
 		int tries = 1;
 		while(tries < Constants.MIN_GENERATIONS && genPop.getFittest().getFitness() < Constants.FITNESS_THRESHOLD) {
-			// TODO More to be added other than below steps
-			genPop.doSelectionAndCrossover();
-			genPop.doMutation();
+			System.out.println("Generation : " + tries);
+			genPop.evolve();
+			System.out.print(", Fittest : " + genPop.getFittest().getFitness());
+			tries++;
 		}
 	}
 
