@@ -1,24 +1,35 @@
 package main;
 
+import org.apache.log4j.Logger;
+
 import constants.Constants;
 import flight.Flight;
 import population.Population;
 
 public class Main {
 
+	final static Logger logger = Logger.getLogger(Main.class);
+
 	public static void main(String[] args) {
 		Population pop = new Population();
 		generatePopulation(pop);
+		logger.info("***********************Generation : 0**************************");
+		logger.info("Fittest : " + pop.getFittest().getFitness());
 		int tries = 1;
 		while (tries <= Constants.MIN_GENERATIONS || pop.getFittest().getFitness() < Constants.FITNESS_THRESHOLD) {
-			System.out.println("***********************Generation : " + tries + "**************************");
+			logger.info("***********************Generation : " + tries + "**************************");
 			pop.evolve();
 			Flight fittest = pop.getFittest();
-			System.out.println("Fittest : " + fittest.getFitness());
+			logger.info("Fittest : " + fittest.getFitness());
 			tries++;
 		}
-		printArray(pop.getFittest().getPriceArray());
-		printArray(pop.getFittest().getTimeArray());
+		Flight fittest = pop.getFittest();
+		logger.info("****************************************************");
+		logger.info("Optimal flight : " + fittest.getFitness());
+		logger.info("Fare : $" + fittest.getPrice());
+		logger.info("Duration : " + fittest.getTime() + " hours");
+		
+		
 	}
 
 	public static void generatePopulation(Population genPop) {
@@ -29,12 +40,4 @@ public class Main {
 			newFlight.calculateFitness();
 		}
 	}
-
-	public static void printArray(int[] array) {
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(", ");
-			System.out.print(array[i]);
-		}
-	}
-
 }

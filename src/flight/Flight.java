@@ -1,5 +1,7 @@
 package flight;
 
+import constants.Constants;
+
 public class Flight implements Comparable<Flight> {
 	private int[] priceArray = new int[10];
 	private int[] timeArray = new int[10];
@@ -43,6 +45,20 @@ public class Flight implements Comparable<Flight> {
 			double random = Math.random();
 			priceArray[i] = random <= 0.03 ? 1 : 0;
 		}
+	}
+	
+	public int getPrice() {
+		int price = Constants.BASE_PRICE;
+		for (int i = 0; i < priceArray.length; i++)
+			price = priceArray[i] ==0 ? price + Constants.PRICE_STEP: price;
+		return price;		
+	}
+	
+	public float getTime() {
+		float time = Constants.BASE_TIME;
+		for (int i = 0; i < timeArray.length; i++)
+			time = timeArray[i] == 0 ? time + Constants.TIME_STEP: time;
+		return time;		
 	}
 
 	public int compareTo(Flight o) {

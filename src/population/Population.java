@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import constants.Constants;
 import flight.Flight;
 
 public class Population {
 
 	private List<Flight> flights;
+	private static final Logger logger = Logger.getLogger(Population.class);
 
 	public Population() {
 		flights = new ArrayList<Flight>();
@@ -44,7 +47,7 @@ public class Population {
 	private void doCull() {
 		Collections.sort(flights);
 		Flight remove = flights.remove(flights.size() - 1);
-		System.out.println("Culling fitness : " + remove.getFitness());
+		logger.info("Culling fitness : " + remove.getFitness());
 	}
 
 	private Flight doCrossover(Flight flight1, Flight flight2) {
@@ -68,16 +71,19 @@ public class Population {
 			}
 		}
 		newFlight.calculateFitness();
-//		System.out.print("New fitness : " + newFlight.getFitness());
+		logger.info("New fitness : " + newFlight.getFitness());
 		return newFlight;
 	}
 
 	public void doMutation(Flight flight) {
 		if(Math.random() < 0.08) {
-			System.out.println("Mutating!!");
+			logger.info("Fitness before mutation : " + flight.getFitness());
 			int bit = (int) Math.floor(Math.random() * 10);
 			flight.getPriceArray()[bit] = flight.getPriceArray()[bit] == 0 ? 1 : 1;
 			flight.getTimeArray()[bit] = flight.getTimeArray()[bit] == 0 ? 1 : 1;
+			flight.calculateFitness();
+			logger.info("Fitness after mutation : " + flight.getFitness());
+			logger.info("");
 		}
 
 	}
