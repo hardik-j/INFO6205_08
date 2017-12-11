@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Population pop = new Population();
-		generatePopulation(pop);
+		pop.generatePopulation();
 		logger.info("***********************Generation : 0**************************");
 		logger.info("Fittest : " + pop.getFittest().getFitness());
 		int tries = 1;
@@ -23,7 +23,7 @@ public class Main {
 			logger.info("Fittest : " + fittest.getFitness());
 			logger.info("Fare : $" + fittest.getPrice());
 			logger.info("Duration : " + fittest.getTime() + " hours");
-			printArray(fittest.getTimeArray());
+//			printArray(fittest.getTimeArray());
 			tries++;
 		}
 		Flight fittest = pop.getFittest();
@@ -44,12 +44,5 @@ public class Main {
 		logger.info(str);
 	}
 
-	public static void generatePopulation(Population genPop) {
-		for (int i = 0; i < Constants.POPULATION_SIZE; i++) {
-			Flight newFlight = genPop.generateFlight();
-			newFlight.genearatePriceArray();
-			newFlight.genearateTimeArray();
-			newFlight.calculateFitness();
-		}
-	}
+	
 }

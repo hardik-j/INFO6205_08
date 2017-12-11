@@ -24,6 +24,7 @@ public class Flight implements Comparable<Flight> {
 	}
 
 	public int getFitness() {
+		calculateFitness();
 		return fitness;
 	}
 

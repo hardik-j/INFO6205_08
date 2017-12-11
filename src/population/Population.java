@@ -75,6 +75,14 @@ public class Population {
 		logger.info("New fitness : " + newFlight.getFitness());
 		return newFlight;
 	}
+	
+	public void generatePopulation() {
+		for (int i = 0; i < Constants.POPULATION_SIZE; i++) {
+			Flight newFlight = generateFlight();
+			newFlight.genearatePriceArray();
+			newFlight.genearateTimeArray();
+		}
+	}
 
 	private void doMutation(Flight flight) {
 		if(Math.random() < 0.08) {
