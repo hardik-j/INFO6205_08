@@ -9,4 +9,5 @@ public class Constants {
 	public static final int BASE_TIME = 3;
 	public static final int PRICE_STEP = 50;
 	public static final float TIME_STEP = (float)0.25;
+	public static final float MUTATION_RATIO = (float)0.08;
 }

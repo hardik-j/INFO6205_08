@@ -85,7 +85,7 @@ public class Population {
 	}
 
 	private void doMutation(Flight flight) {
-		if(Math.random() < 0.08) {
+		if(Math.random() < Constants.MUTATION_RATIO) {
 			logger.info("Fitness before mutation : " + flight.getFitness());
 			int bit = (int) Math.floor(Math.random() * 10);
 			flight.getPriceArray()[bit] = flight.getPriceArray()[bit] == 0 ? 1 : 1;

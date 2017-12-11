@@ -13,6 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		Population pop = new Population();
 		pop.generatePopulation();
+		logger.info("Population size : " + pop.getFlights().size());
 		logger.info("***********************Generation : 0**************************");
 		logger.info("Fittest : " + pop.getFittest().getFitness());
 		int tries = 1;
